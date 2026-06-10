@@ -2,7 +2,7 @@
 
 ## Description du pipeline
 
-Pipeline Airflow complet autour de l'API Open-Meteo. Il récupère des données météo pour plusieurs villes configurables, les archive, les transforme, vérifie leur qualité, et selon le résultat : charge les données dans PostgreSQL **ou** bloque le chargement et trace l'anomalie.
+Conception d’un pipeline ETL orchestré par Apache Airflow exploitant l’API Open-Meteo pour l’acquisition automatisée de données météorologiques multi-villes. Le pipeline assure l’extraction, l’archivage, la transformation et le contrôle qualité des données avant leur intégration dans PostgreSQL. Toute anomalie détectée bloque le processus de chargement et déclenche une traçabilité des erreurs afin de garantir la qualité des données.
 
 ---
 
@@ -42,7 +42,7 @@ tp5/
 ├── docker-compose.yml
 ├── .env
 ├── sql/
-│   └── init.sql                      # Création des 3 tables PostgreSQL
+│   └── init.sql                      #3 tables PostgreSQL
 ├── dags/
 │   ├── weather_pipeline_v2.py        # DAG principal
 │   └── weather/                      # Modules Python séparés
@@ -53,7 +53,6 @@ tp5/
 │       └── archive.py                # Sauvegarde JSON brut
 ├── logs/
 ├── plugins/
-└── captures/
 ```
 
 ---
@@ -244,34 +243,6 @@ docker exec tp5-postgres-weather-1 psql -U weather -d weather -c \
 
 ---
 
-## Preuves d'exécution
-
-### Cas nominal — DAG graph (toutes tâches en succès)
-<img width="1902" height="680" alt="image" src="https://github.com/user-attachments/assets/6603610c-eba5-4582-aa7d-699f42894a56" />
-<img width="1869" height="979" alt="image" src="https://github.com/user-attachments/assets/a71b1572-2f71-4d0b-bc27-f38db2a4371f" />
-<img width="1881" height="975" alt="image" src="https://github.com/user-attachments/assets/404f45b9-998d-4eaa-98e9-08c006f625fa" />
-
-
-docker exec tp5-postgres-weather-1 psql -U weather -d weather -c "SELECT pipeline_status, quality_status, rows_loaded FROM ingestion_log;"
->> 
- pipeline_status | quality_status | rows_loaded 
------------------+----------------+-------------
- success         | passed         |           4
-(1 row)
-
-
-
-### Cas anomalie — DAG graph (branche quality_failure)
-
-<img width="1916" height="608" alt="image" src="https://github.com/user-attachments/assets/e6019cee-0e86-4bdf-9b56-72c9b801efd8" />
-
-
-### Cas anomalie — Logs `log_quality_failure`
-
-<img width="1315" height="712" alt="image" src="https://github.com/user-attachments/assets/c84e331d-a9c8-4ab9-8289-1fa81fe92613" />
-<img width="1888" height="495" alt="image" src="https://github.com/user-attachments/assets/b70411fc-61ec-4361-bcc6-1110a750324a" />
-
-
 ### Cas relance — Preuve d'idempotence
 docker exec tp5-postgres-weather-1 psql -U weather -d weather -c "SELECT city_name, forecast_date, COUNT(*) FROM weather_data GROUP BY city_name, forecast_date ORDER BY city_name;"
 >> 
@@ -283,10 +254,6 @@ docker exec tp5-postgres-weather-1 psql -U weather -d weather -c "SELECT city_na
  Paris     | 2026-06-10    |     3
 (4 rows)
 
-
-### `ingestion_log` après les 3 cas
-
-<img width="1911" height="688" alt="image" src="https://github.com/user-attachments/assets/ab20299f-579b-4449-b736-826231c81af1" />
 
 
 ---
