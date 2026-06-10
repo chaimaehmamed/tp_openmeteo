@@ -1,0 +1,23 @@
+[2026-06-10T09:08:40.042+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-06-10T09:08:40.129+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: weather_pipeline_v2.branch_on_quality manual__2026-06-10T09:08:32.258539+00:00 [queued]>
+[2026-06-10T09:08:40.149+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: weather_pipeline_v2.branch_on_quality manual__2026-06-10T09:08:32.258539+00:00 [queued]>
+[2026-06-10T09:08:40.152+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 3
+[2026-06-10T09:08:40.176+0000] {taskinstance.py:2330} INFO - Executing <Task(BranchPythonOperator): branch_on_quality> on 2026-06-10 09:08:32.258539+00:00
+[2026-06-10T09:08:40.191+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=231) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-06-10T09:08:40.195+0000] {standard_task_runner.py:63} INFO - Started process 232 to run task
+[2026-06-10T09:08:40.192+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'weather_pipeline_v2', 'branch_on_quality', 'manual__2026-06-10T09:08:32.258539+00:00', '--job-id', '6', '--raw', '--subdir', 'DAGS_FOLDER/weather_pipeline_v2.py', '--cfg-path', '/tmp/tmpkuwknrsn']
+[2026-06-10T09:08:40.197+0000] {standard_task_runner.py:91} INFO - Job 6: Subtask branch_on_quality
+[2026-06-10T09:08:40.323+0000] {task_command.py:426} INFO - Running <TaskInstance: weather_pipeline_v2.branch_on_quality manual__2026-06-10T09:08:32.258539+00:00 [running]> on host a8f4778724dd
+[2026-06-10T09:08:40.478+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='weather_pipeline_v2' AIRFLOW_CTX_TASK_ID='branch_on_quality' AIRFLOW_CTX_EXECUTION_DATE='2026-06-10T09:08:32.258539+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-06-10T09:08:32.258539+00:00'
+[2026-06-10T09:08:40.480+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-06-10T09:08:40.505+0000] {baseoperator.py:399} WARNING - BranchPythonOperator.execute cannot be called outside TaskInstance!
+[2026-06-10T09:08:40.524+0000] {weather_pipeline_v2.py:140} INFO - [branch] → load_to_postgresql
+[2026-06-10T09:08:40.525+0000] {python.py:237} INFO - Done. Returned value was: load_to_postgresql
+[2026-06-10T09:08:40.527+0000] {branch.py:36} INFO - Branch into load_to_postgresql
+[2026-06-10T09:08:40.528+0000] {skipmixin.py:178} INFO - Following branch load_to_postgresql
+[2026-06-10T09:08:40.555+0000] {skipmixin.py:246} INFO - Skipping tasks [('log_quality_failure', -1)]
+[2026-06-10T09:08:40.593+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-06-10T09:08:40.629+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=weather_pipeline_v2, task_id=branch_on_quality, run_id=manual__2026-06-10T09:08:32.258539+00:00, execution_date=20260610T090832, start_date=20260610T090840, end_date=20260610T090840
+[2026-06-10T09:08:40.695+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2026-06-10T09:08:40.746+0000] {taskinstance.py:3498} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-06-10T09:08:40.750+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

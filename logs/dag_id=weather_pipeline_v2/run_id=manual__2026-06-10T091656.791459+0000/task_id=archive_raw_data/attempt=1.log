@@ -1,0 +1,21 @@
+[2026-06-10T09:17:00.150+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-06-10T09:17:00.202+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: weather_pipeline_v2.archive_raw_data manual__2026-06-10T09:16:56.791459+00:00 [queued]>
+[2026-06-10T09:17:00.216+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: weather_pipeline_v2.archive_raw_data manual__2026-06-10T09:16:56.791459+00:00 [queued]>
+[2026-06-10T09:17:00.217+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 3
+[2026-06-10T09:17:00.238+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): archive_raw_data> on 2026-06-10 09:16:56.791459+00:00
+[2026-06-10T09:17:00.248+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=345) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-06-10T09:17:00.251+0000] {standard_task_runner.py:63} INFO - Started process 346 to run task
+[2026-06-10T09:17:00.249+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'weather_pipeline_v2', 'archive_raw_data', 'manual__2026-06-10T09:16:56.791459+00:00', '--job-id', '20', '--raw', '--subdir', 'DAGS_FOLDER/weather_pipeline_v2.py', '--cfg-path', '/tmp/tmpxys0rkkw']
+[2026-06-10T09:17:00.253+0000] {standard_task_runner.py:91} INFO - Job 20: Subtask archive_raw_data
+[2026-06-10T09:17:00.348+0000] {task_command.py:426} INFO - Running <TaskInstance: weather_pipeline_v2.archive_raw_data manual__2026-06-10T09:16:56.791459+00:00 [running]> on host a8f4778724dd
+[2026-06-10T09:17:00.483+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='weather_pipeline_v2' AIRFLOW_CTX_TASK_ID='archive_raw_data' AIRFLOW_CTX_EXECUTION_DATE='2026-06-10T09:16:56.791459+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-06-10T09:16:56.791459+00:00'
+[2026-06-10T09:17:00.486+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-06-10T09:17:00.529+0000] {archive.py:25} INFO - [archive] JSON brut sauvegardé : /tmp/weather_archive/2026-06-10/manual__2026-06-10T09_16_56.791459_00_00.json
+[2026-06-10T09:17:00.532+0000] {crypto.py:82} WARNING - empty cryptography key - values will not be stored encrypted.
+[2026-06-10T09:17:00.533+0000] {base.py:84} INFO - Using connection ID '***_db' for task execution.
+[2026-06-10T09:17:00.561+0000] {python.py:237} INFO - Done. Returned value was: None
+[2026-06-10T09:17:00.563+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-06-10T09:17:00.574+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=***_pipeline_v2, task_id=archive_raw_data, run_id=manual__2026-06-10T09:16:56.791459+00:00, execution_date=20260610T091656, start_date=20260610T091700, end_date=20260610T091700
+[2026-06-10T09:17:00.629+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2026-06-10T09:17:00.667+0000] {taskinstance.py:3498} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-06-10T09:17:00.672+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
